@@ -1,0 +1,101 @@
+html {
+  font-size: 14px;
+}
+
+#quote-1 .container > div {
+  flex-direction: column;
+}
+
+#quote-1 .container > div > h2 {
+  max-width: 100% !important;
+}
+
+#quote-1 a > button {
+  margin-top: 1.5rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#skills #skills-content {
+  flex-wrap: wrap;
+}
+
+#skills #skills-description {
+  max-width: 100%;
+}
+
+#skills #skills-programming,
+#skills #skills-libraries {
+  width: 50%;
+  margin-top: 2rem;
+}
+
+#contact .container {
+  height: unset;
+}
+
+#contact #contact-description > h2 {
+  max-width: 100%;
+}
+
+#contact #contact-description #contact-icons {
+  display: flex;
+}
+
+#contact svg {
+  height: 3.2rem;
+}
+
+#contact-form {
+  flex-direction: column;
+}
+
+#contact form #form-details,
+#contact form #form-message {
+  width: 100%;
+  margin: 0;
+}
+
+#footer .container {
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+#footer .container #featured-footer {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+#footer #footer-contact-links {
+  margin-top: auto;
+}
+
+#footer #footer-pages,
+#footer #footer-contact-links {
+  width: 50%;
+}
+
+@media only screen and (max-width: 540px) {
+  .button-minimal {
+    width: 12rem;
+  }
+
+  section .container {
+    height: 100vh;
+  }
+
+  #projects .container {
+    min-height: 100vh;
+    height: 100%;
+  }
+
+  #projects .card-container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+      "card-1"
+      "card-2"
+      "card-3"
+      "card-4";
+  }
+}
