@@ -1,0 +1,98 @@
+* {
+  background-color: black;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.perspectiveContainer {
+  perspective: 800px;
+}
+
+.animationDisplay {
+  width: 700px;
+  height: 700px;
+  background-color: black;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+
+  border-image: conic-gradient(
+      from 45deg,
+      hsl(200, 75%, 75%),
+      12.5%,
+      hsl(260, 75%, 75%),
+      hsl(335, 75%, 75%),
+      hsl(10, 75%, 75%),
+      hsl(200, 75%, 75%)
+    )
+    27 / 2px;
+  box-shadow: 120px -120px 80px -80px hsl(200, 50%, 50%),
+    120px 120px 80px -80px hsl(260, 50%, 50%),
+    -120px 120px 80px -80px hsl(335, 50%, 50%),
+    -120px -120px 80px -80px hsl(10, 50%, 50%);
+  --shineX: 0;
+  --shineY: 0;
+}
+
+.animationDisplay::after {
+  content: "";
+  position: absolute;
+  top: -400px;
+  right: -400px;
+  bottom: -400px;
+  left: -400px;
+  background: linear-gradient(
+    217deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(var(--shineX)) translateY(var(--shineY));
+}
+
+.animation {
+  width: 200px;
+  height: 200px;
+  background-color: silver;
+  animation-name: squareToCircle;
+  animation-duration: 3s;
+  animation-delay: 500ms;
+  animation-iteration-count: infinite;
+}
+
+@keyframes squareToCircle {
+  0% {
+    border-radius: 0 30% 0 30%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 30% 0 30% 0;
+    transform: rotate(45deg);
+  }
+  50% {
+    border-radius: 0 30% 0 30%;
+    transform: rotate(90deg);
+  }
+  75% {
+    border-radius: 30% 0 30% 0;
+    transform: rotate(135deg);
+  }
+  100% {
+    border-radius: 0 30% 0 30%;
+    transform: rotate(180deg);
+  }
+}
