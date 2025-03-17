@@ -98,17 +98,17 @@ animateLiText(footerJumpTitles);
 animateLiText(navMenuTitles);
 
 // Caption Animation
-const words = ["Software Engineer.", "Web Developer.", "Avid Learner.", "Problem Solver."];
+const words = ["Web Developer.", "Avid Learner.", "Problem Solver.", "Software Engineer."];
 let i = 0;
 let timer;
-let timeDelay = 1000;
+let timeDelay = 8500;
 
 const typingEffect = () => {
   let word = words[i].split("");
   let loopTyping = () => {
     if (word.length > 0) {
       document.getElementById('hero-caption').innerHTML += word.shift();
-      timer = setTimeout(loopTyping, 300);
+      timer = setTimeout(loopTyping, 150);
     } else {
       setTimeout(deletingEffect, timeDelay);
     }
@@ -122,7 +122,7 @@ const deletingEffect = () => {
     if (word.length > 0) {
       word.pop();
       document.getElementById('hero-caption').innerHTML = word.join("");
-      timer = setTimeout(loopDeleting, 200);
+      timer = setTimeout(loopDeleting, 100);
     } else {
       if (words.length > (i + 1)) {
         i++;
