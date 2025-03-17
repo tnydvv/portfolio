@@ -101,14 +101,19 @@ animateLiText(navMenuTitles);
 const words = ["Web Developer.", "Avid Learner.", "Problem Solver.", "Software Engineer."];
 let i = 0;
 let timer;
-let timeDelay = 8500;
+let timeDelay = 1250;
 
 const typingEffect = () => {
   let word = words[i].split("");
-  let loopTyping = () => {
+  let startTime = performance.now();
+
+  const loopTyping = () => {
     if (word.length > 0) {
-      document.getElementById('hero-caption').innerHTML += word.shift();
-      timer = setTimeout(loopTyping, 150);
+      document.getElementById('hero-caption').innerHTML += word.shift(); // Update DOM
+      const elapsedTime = performance.now() - startTime;
+      const delay = Math.max(0, 300 - elapsedTime);
+      timer = setTimeout(loopTyping, delay);
+      startTime = performance.now();
     } else {
       setTimeout(deletingEffect, timeDelay);
     }
@@ -118,18 +123,19 @@ const typingEffect = () => {
 
 const deletingEffect = () => {
   let word = words[i].split("");
-  let loopDeleting = () => {
+  let startTime = performance.now();
+
+  const loopDeleting = () => {
     if (word.length > 0) {
       word.pop();
-      document.getElementById('hero-caption').innerHTML = word.join("");
-      timer = setTimeout(loopDeleting, 100);
+      document.getElementById('hero-caption').innerHTML = word.join(""); // Update DOM
+      const elapsedTime = performance.now() - startTime;
+      const delay = Math.max(0, 200 - elapsedTime);
+      timer = setTimeout(loopDeleting, delay);
+      startTime = performance.now();
     } else {
-      if (words.length > (i + 1)) {
-        i++;
-      } else {
-        i = 0;
-      }
-      setTimeout(typingEffect, timeDelay);
+      i = (i + 1) % words.length;
+      setTimeout(typingEffect);
       return false;
     }
   };
@@ -137,13 +143,12 @@ const deletingEffect = () => {
 };
 
 const initialErase = () => {
-  let initialWord = document.getElementById('hero-caption').innerHTML.split("");
-  let index = 0;
+  let initialWord = document.getElementById('hero-caption').innerHTML.split(""); // Get from DOM
 
   const eraseCharacter = () => {
     if (initialWord.length > 0) {
       initialWord.pop();
-      document.getElementById('hero-caption').innerHTML = initialWord.join("");
+      document.getElementById('hero-caption').innerHTML = initialWord.join(""); // Update DOM
       timer = setTimeout(eraseCharacter, 100);
     } else {
       typingEffect();
