@@ -96,3 +96,62 @@ let footerSocialTitles = document.querySelectorAll("#footer-contact-links ul > l
 animateLiText(footerSocialTitles);
 animateLiText(footerJumpTitles);
 animateLiText(navMenuTitles);
+
+// Caption Animation
+const words = ["Software Engineer.", "Web Developer.", "Avid Learner.", "Problem Solver."];
+let i = 0;
+let timer;
+let timeDelay = 1000;
+
+const typingEffect = () => {
+  let word = words[i].split("");
+  let loopTyping = () => {
+    if (word.length > 0) {
+      document.getElementById('hero-caption').innerHTML += word.shift();
+      timer = setTimeout(loopTyping, 300);
+    } else {
+      setTimeout(deletingEffect, timeDelay);
+    }
+  };
+  loopTyping();
+};
+
+const deletingEffect = () => {
+  let word = words[i].split("");
+  let loopDeleting = () => {
+    if (word.length > 0) {
+      word.pop();
+      document.getElementById('hero-caption').innerHTML = word.join("");
+      timer = setTimeout(loopDeleting, 200);
+    } else {
+      if (words.length > (i + 1)) {
+        i++;
+      } else {
+        i = 0;
+      }
+      setTimeout(typingEffect, timeDelay);
+      return false;
+    }
+  };
+  loopDeleting();
+};
+
+const initialErase = () => {
+  let initialWord = document.getElementById('hero-caption').innerHTML.split("");
+  let index = 0;
+
+  const eraseCharacter = () => {
+    if (initialWord.length > 0) {
+      initialWord.pop();
+      document.getElementById('hero-caption').innerHTML = initialWord.join("");
+      timer = setTimeout(eraseCharacter, 100);
+    } else {
+      typingEffect();
+    }
+  };
+
+  eraseCharacter();
+};
+
+// Start the initial erasing process
+initialErase();
