@@ -270,6 +270,7 @@ textarea {
 #hero-title,
 #hero-caption {
   line-height: 0.8;
+  min-height: 32px;
 }
 
 #logo-large {
